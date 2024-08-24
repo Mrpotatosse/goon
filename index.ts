@@ -1,44 +1,51 @@
-import { GoonApp } from "~/src/app";
+import boxen from "boxen";
+import { program } from "commander";
+import { PeerApp } from "~/src/peer";
 
-const app = new GoonApp({
-	p2p: {
-		listeningAddresses: ["/ip4/0.0.0.0/tcp/4567"],
-		topics: ["chat", "world", "market"],
-		peers: process.argv[2] ? [process.argv[2]] : [],
-	},
-	orm: {
-		url: process.env.DATABASE_URL,
-		authToken: process.env.DATABASE_AUTH_TOKEN,
-	},
-});
+program
+	.requiredOption("--port <port>", "listening port")
+	.requiredOption("--topics <topics...>", "listening topics")
+	.requiredOption("--peers <peers...>", "peers multiaddress")
+	.option("--passphrase <passphrase>", "node passphrase for keyPair generation")
+	.action(async (options) => {
+		const app = new PeerApp({
+			listeningAddresses: [`/ip4/0.0.0.0/tcp/${options.port}`],
+			topics: options.topics,
+			peers: options.peers,
+			passphrase: options.passphrase,
+		});
 
-app.addListener("start", (app) => {
-	for (const addr of app.node.getMultiaddrs()) {
-		console.log("node:", addr.toString());
-	}
-});
+		app.addListener("start", (e) => {
+			const nodes = e.detail.app.node
+				.getMultiaddrs()
+				.map((node) => `node: ${node}`)
+				.join("\n");
 
-app.addListener("subscribe", (app, topic) => {
-	console.log("topic:", topic);
-});
+			console.log(
+				boxen(nodes, {
+					title: "nodes",
+					titleAlignment: "center",
+					padding: 1,
+					margin: 1,
+					borderStyle: "double",
+				}),
+			);
+		});
 
-app.addListener("ping", (app, address, latency) => {
-	console.log("pinged:", address.toString(), latency);
-});
+		await app.start();
 
-app.addListener("stop", (app) => {
-	console.log("app stoped");
-});
+		app.node.services.pubsub.addEventListener("message", (e) => {
+			console.log("data:", e.detail.topic, e.detail.data.toString());
+		});
 
-await app.start();
-
-app.node.services.pubsub.addEventListener("message", (e) => {
-	console.log("data:", e.detail.topic, e.detail.data.toString());
-});
-
-app.node.services.pubsub.addEventListener("subscription-change", async (e) => {
-	await app.node.services.pubsub.publish(
-		"chat",
-		Buffer.from(`hi peer ${e.detail.peerId} from ${app.node.peerId}`),
-	);
-});
+		app.node.services.pubsub.addEventListener(
+			"subscription-change",
+			async (e) => {
+				await app.node.services.pubsub.publish(
+					"chat",
+					Buffer.from(`hi peer ${e.detail.peerId} from ${app.node.peerId}`),
+				);
+			},
+		);
+	})
+	.parse();
