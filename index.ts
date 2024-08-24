@@ -2,7 +2,7 @@ import { GoonApp } from "~/src/app";
 
 const app = new GoonApp({
 	p2p: {
-		listeningAddresses: ["/ip4/0.0.0.0/tcp/0"],
+		listeningAddresses: ["/ip4/0.0.0.0/tcp/4567"],
 		topics: ["chat", "world", "market"],
 		peers: process.argv[2] ? [process.argv[2]] : [],
 	},
