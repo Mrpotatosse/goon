@@ -5,7 +5,7 @@ import { PeerApp } from "~/src/peer";
 program
 	.requiredOption("--port <port>", "listening port")
 	.requiredOption("--topics <topics...>", "listening topics")
-	.requiredOption("--peers <peers...>", "peers multiaddress")
+	.option("--peers <peers...>", "peers multiaddress")
 	.option("--passphrase <passphrase>", "node passphrase for keyPair generation")
 	.action(async (options) => {
 		const app = new PeerApp({
