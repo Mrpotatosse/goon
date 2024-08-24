@@ -9,31 +9,33 @@ var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.ut
 // Exported root namespace
 var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 
-$root.ChatProtocol = (function() {
+$root.GoonProtocol = (function() {
 
     /**
-     * Namespace ChatProtocol.
-     * @exports ChatProtocol
+     * Namespace GoonProtocol.
+     * @exports GoonProtocol
      * @namespace
      */
-    var ChatProtocol = {};
+    var GoonProtocol = {};
 
-    ChatProtocol.ChatMessage = (function() {
+    GoonProtocol.ChatMessage = (function() {
 
         /**
          * Properties of a ChatMessage.
-         * @memberof ChatProtocol
+         * @memberof GoonProtocol
          * @interface IChatMessage
-         * @property {string|null} [name] ChatMessage name
+         * @property {string|null} [from] ChatMessage from
+         * @property {string|null} [content] ChatMessage content
+         * @property {string|null} [timestamp] ChatMessage timestamp
          */
 
         /**
          * Constructs a new ChatMessage.
-         * @memberof ChatProtocol
+         * @memberof GoonProtocol
          * @classdesc Represents a ChatMessage.
          * @implements IChatMessage
          * @constructor
-         * @param {ChatProtocol.IChatMessage=} [properties] Properties to set
+         * @param {GoonProtocol.IChatMessage=} [properties] Properties to set
          */
         function ChatMessage(properties) {
             if (properties)
@@ -43,48 +45,68 @@ $root.ChatProtocol = (function() {
         }
 
         /**
-         * ChatMessage name.
-         * @member {string} name
-         * @memberof ChatProtocol.ChatMessage
+         * ChatMessage from.
+         * @member {string} from
+         * @memberof GoonProtocol.ChatMessage
          * @instance
          */
-        ChatMessage.prototype.name = "";
+        ChatMessage.prototype.from = "";
+
+        /**
+         * ChatMessage content.
+         * @member {string} content
+         * @memberof GoonProtocol.ChatMessage
+         * @instance
+         */
+        ChatMessage.prototype.content = "";
+
+        /**
+         * ChatMessage timestamp.
+         * @member {string} timestamp
+         * @memberof GoonProtocol.ChatMessage
+         * @instance
+         */
+        ChatMessage.prototype.timestamp = "";
 
         /**
          * Creates a new ChatMessage instance using the specified properties.
          * @function create
-         * @memberof ChatProtocol.ChatMessage
+         * @memberof GoonProtocol.ChatMessage
          * @static
-         * @param {ChatProtocol.IChatMessage=} [properties] Properties to set
-         * @returns {ChatProtocol.ChatMessage} ChatMessage instance
+         * @param {GoonProtocol.IChatMessage=} [properties] Properties to set
+         * @returns {GoonProtocol.ChatMessage} ChatMessage instance
          */
         ChatMessage.create = function create(properties) {
             return new ChatMessage(properties);
         };
 
         /**
-         * Encodes the specified ChatMessage message. Does not implicitly {@link ChatProtocol.ChatMessage.verify|verify} messages.
+         * Encodes the specified ChatMessage message. Does not implicitly {@link GoonProtocol.ChatMessage.verify|verify} messages.
          * @function encode
-         * @memberof ChatProtocol.ChatMessage
+         * @memberof GoonProtocol.ChatMessage
          * @static
-         * @param {ChatProtocol.IChatMessage} message ChatMessage message or plain object to encode
+         * @param {GoonProtocol.IChatMessage} message ChatMessage message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
         ChatMessage.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
-            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
-                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+            if (message.from != null && Object.hasOwnProperty.call(message, "from"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.from);
+            if (message.content != null && Object.hasOwnProperty.call(message, "content"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.content);
+            if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.timestamp);
             return writer;
         };
 
         /**
-         * Encodes the specified ChatMessage message, length delimited. Does not implicitly {@link ChatProtocol.ChatMessage.verify|verify} messages.
+         * Encodes the specified ChatMessage message, length delimited. Does not implicitly {@link GoonProtocol.ChatMessage.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof ChatProtocol.ChatMessage
+         * @memberof GoonProtocol.ChatMessage
          * @static
-         * @param {ChatProtocol.IChatMessage} message ChatMessage message or plain object to encode
+         * @param {GoonProtocol.IChatMessage} message ChatMessage message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
@@ -95,23 +117,31 @@ $root.ChatProtocol = (function() {
         /**
          * Decodes a ChatMessage message from the specified reader or buffer.
          * @function decode
-         * @memberof ChatProtocol.ChatMessage
+         * @memberof GoonProtocol.ChatMessage
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {ChatProtocol.ChatMessage} ChatMessage
+         * @returns {GoonProtocol.ChatMessage} ChatMessage
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
         ChatMessage.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.ChatProtocol.ChatMessage();
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.GoonProtocol.ChatMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1: {
-                        message.name = reader.string();
+                        message.from = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.content = reader.string();
+                        break;
+                    }
+                case 3: {
+                        message.timestamp = reader.string();
                         break;
                     }
                 default:
@@ -125,10 +155,10 @@ $root.ChatProtocol = (function() {
         /**
          * Decodes a ChatMessage message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof ChatProtocol.ChatMessage
+         * @memberof GoonProtocol.ChatMessage
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {ChatProtocol.ChatMessage} ChatMessage
+         * @returns {GoonProtocol.ChatMessage} ChatMessage
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
@@ -141,7 +171,7 @@ $root.ChatProtocol = (function() {
         /**
          * Verifies a ChatMessage message.
          * @function verify
-         * @memberof ChatProtocol.ChatMessage
+         * @memberof GoonProtocol.ChatMessage
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
@@ -149,35 +179,45 @@ $root.ChatProtocol = (function() {
         ChatMessage.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
-            if (message.name != null && message.hasOwnProperty("name"))
-                if (!$util.isString(message.name))
-                    return "name: string expected";
+            if (message.from != null && message.hasOwnProperty("from"))
+                if (!$util.isString(message.from))
+                    return "from: string expected";
+            if (message.content != null && message.hasOwnProperty("content"))
+                if (!$util.isString(message.content))
+                    return "content: string expected";
+            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                if (!$util.isString(message.timestamp))
+                    return "timestamp: string expected";
             return null;
         };
 
         /**
          * Creates a ChatMessage message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof ChatProtocol.ChatMessage
+         * @memberof GoonProtocol.ChatMessage
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {ChatProtocol.ChatMessage} ChatMessage
+         * @returns {GoonProtocol.ChatMessage} ChatMessage
          */
         ChatMessage.fromObject = function fromObject(object) {
-            if (object instanceof $root.ChatProtocol.ChatMessage)
+            if (object instanceof $root.GoonProtocol.ChatMessage)
                 return object;
-            var message = new $root.ChatProtocol.ChatMessage();
-            if (object.name != null)
-                message.name = String(object.name);
+            var message = new $root.GoonProtocol.ChatMessage();
+            if (object.from != null)
+                message.from = String(object.from);
+            if (object.content != null)
+                message.content = String(object.content);
+            if (object.timestamp != null)
+                message.timestamp = String(object.timestamp);
             return message;
         };
 
         /**
          * Creates a plain object from a ChatMessage message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof ChatProtocol.ChatMessage
+         * @memberof GoonProtocol.ChatMessage
          * @static
-         * @param {ChatProtocol.ChatMessage} message ChatMessage
+         * @param {GoonProtocol.ChatMessage} message ChatMessage
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
@@ -185,17 +225,24 @@ $root.ChatProtocol = (function() {
             if (!options)
                 options = {};
             var object = {};
-            if (options.defaults)
-                object.name = "";
-            if (message.name != null && message.hasOwnProperty("name"))
-                object.name = message.name;
+            if (options.defaults) {
+                object.from = "";
+                object.content = "";
+                object.timestamp = "";
+            }
+            if (message.from != null && message.hasOwnProperty("from"))
+                object.from = message.from;
+            if (message.content != null && message.hasOwnProperty("content"))
+                object.content = message.content;
+            if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+                object.timestamp = message.timestamp;
             return object;
         };
 
         /**
          * Converts this ChatMessage to JSON.
          * @function toJSON
-         * @memberof ChatProtocol.ChatMessage
+         * @memberof GoonProtocol.ChatMessage
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
@@ -206,7 +253,7 @@ $root.ChatProtocol = (function() {
         /**
          * Gets the default type url for ChatMessage
          * @function getTypeUrl
-         * @memberof ChatProtocol.ChatMessage
+         * @memberof GoonProtocol.ChatMessage
          * @static
          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns {string} The default type url
@@ -215,42 +262,246 @@ $root.ChatProtocol = (function() {
             if (typeUrlPrefix === undefined) {
                 typeUrlPrefix = "type.googleapis.com";
             }
-            return typeUrlPrefix + "/ChatProtocol.ChatMessage";
+            return typeUrlPrefix + "/GoonProtocol.ChatMessage";
         };
 
         return ChatMessage;
     })();
 
-    return ChatProtocol;
+    GoonProtocol.HelloMessage = (function() {
+
+        /**
+         * Properties of a HelloMessage.
+         * @memberof GoonProtocol
+         * @interface IHelloMessage
+         * @property {string|null} [name] HelloMessage name
+         */
+
+        /**
+         * Constructs a new HelloMessage.
+         * @memberof GoonProtocol
+         * @classdesc Represents a HelloMessage.
+         * @implements IHelloMessage
+         * @constructor
+         * @param {GoonProtocol.IHelloMessage=} [properties] Properties to set
+         */
+        function HelloMessage(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * HelloMessage name.
+         * @member {string} name
+         * @memberof GoonProtocol.HelloMessage
+         * @instance
+         */
+        HelloMessage.prototype.name = "";
+
+        /**
+         * Creates a new HelloMessage instance using the specified properties.
+         * @function create
+         * @memberof GoonProtocol.HelloMessage
+         * @static
+         * @param {GoonProtocol.IHelloMessage=} [properties] Properties to set
+         * @returns {GoonProtocol.HelloMessage} HelloMessage instance
+         */
+        HelloMessage.create = function create(properties) {
+            return new HelloMessage(properties);
+        };
+
+        /**
+         * Encodes the specified HelloMessage message. Does not implicitly {@link GoonProtocol.HelloMessage.verify|verify} messages.
+         * @function encode
+         * @memberof GoonProtocol.HelloMessage
+         * @static
+         * @param {GoonProtocol.IHelloMessage} message HelloMessage message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        HelloMessage.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified HelloMessage message, length delimited. Does not implicitly {@link GoonProtocol.HelloMessage.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof GoonProtocol.HelloMessage
+         * @static
+         * @param {GoonProtocol.IHelloMessage} message HelloMessage message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        HelloMessage.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a HelloMessage message from the specified reader or buffer.
+         * @function decode
+         * @memberof GoonProtocol.HelloMessage
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {GoonProtocol.HelloMessage} HelloMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        HelloMessage.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.GoonProtocol.HelloMessage();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1: {
+                        message.name = reader.string();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a HelloMessage message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof GoonProtocol.HelloMessage
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {GoonProtocol.HelloMessage} HelloMessage
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        HelloMessage.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a HelloMessage message.
+         * @function verify
+         * @memberof GoonProtocol.HelloMessage
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        HelloMessage.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.name != null && message.hasOwnProperty("name"))
+                if (!$util.isString(message.name))
+                    return "name: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a HelloMessage message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof GoonProtocol.HelloMessage
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {GoonProtocol.HelloMessage} HelloMessage
+         */
+        HelloMessage.fromObject = function fromObject(object) {
+            if (object instanceof $root.GoonProtocol.HelloMessage)
+                return object;
+            var message = new $root.GoonProtocol.HelloMessage();
+            if (object.name != null)
+                message.name = String(object.name);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a HelloMessage message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof GoonProtocol.HelloMessage
+         * @static
+         * @param {GoonProtocol.HelloMessage} message HelloMessage
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        HelloMessage.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults)
+                object.name = "";
+            if (message.name != null && message.hasOwnProperty("name"))
+                object.name = message.name;
+            return object;
+        };
+
+        /**
+         * Converts this HelloMessage to JSON.
+         * @function toJSON
+         * @memberof GoonProtocol.HelloMessage
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        HelloMessage.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for HelloMessage
+         * @function getTypeUrl
+         * @memberof GoonProtocol.HelloMessage
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        HelloMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/GoonProtocol.HelloMessage";
+        };
+
+        return HelloMessage;
+    })();
+
+    return GoonProtocol;
 })();
 
-$root.MarketProtocol = (function() {
+$root.Protocol = (function() {
 
     /**
-     * Namespace MarketProtocol.
-     * @exports MarketProtocol
+     * Namespace Protocol.
+     * @exports Protocol
      * @namespace
      */
-    var MarketProtocol = {};
+    var Protocol = {};
 
-    MarketProtocol.SellMessage = (function() {
+    Protocol.ProtocolMessage = (function() {
 
         /**
-         * Properties of a SellMessage.
-         * @memberof MarketProtocol
-         * @interface ISellMessage
-         * @property {string|null} [name] SellMessage name
+         * Properties of a ProtocolMessage.
+         * @memberof Protocol
+         * @interface IProtocolMessage
+         * @property {string|null} [name] ProtocolMessage name
+         * @property {Uint8Array|null} [data] ProtocolMessage data
          */
 
         /**
-         * Constructs a new SellMessage.
-         * @memberof MarketProtocol
-         * @classdesc Represents a SellMessage.
-         * @implements ISellMessage
+         * Constructs a new ProtocolMessage.
+         * @memberof Protocol
+         * @classdesc Represents a ProtocolMessage.
+         * @implements IProtocolMessage
          * @constructor
-         * @param {MarketProtocol.ISellMessage=} [properties] Properties to set
+         * @param {Protocol.IProtocolMessage=} [properties] Properties to set
          */
-        function SellMessage(properties) {
+        function ProtocolMessage(properties) {
             if (properties)
                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
@@ -258,75 +509,89 @@ $root.MarketProtocol = (function() {
         }
 
         /**
-         * SellMessage name.
+         * ProtocolMessage name.
          * @member {string} name
-         * @memberof MarketProtocol.SellMessage
+         * @memberof Protocol.ProtocolMessage
          * @instance
          */
-        SellMessage.prototype.name = "";
+        ProtocolMessage.prototype.name = "";
 
         /**
-         * Creates a new SellMessage instance using the specified properties.
-         * @function create
-         * @memberof MarketProtocol.SellMessage
-         * @static
-         * @param {MarketProtocol.ISellMessage=} [properties] Properties to set
-         * @returns {MarketProtocol.SellMessage} SellMessage instance
+         * ProtocolMessage data.
+         * @member {Uint8Array} data
+         * @memberof Protocol.ProtocolMessage
+         * @instance
          */
-        SellMessage.create = function create(properties) {
-            return new SellMessage(properties);
+        ProtocolMessage.prototype.data = $util.newBuffer([]);
+
+        /**
+         * Creates a new ProtocolMessage instance using the specified properties.
+         * @function create
+         * @memberof Protocol.ProtocolMessage
+         * @static
+         * @param {Protocol.IProtocolMessage=} [properties] Properties to set
+         * @returns {Protocol.ProtocolMessage} ProtocolMessage instance
+         */
+        ProtocolMessage.create = function create(properties) {
+            return new ProtocolMessage(properties);
         };
 
         /**
-         * Encodes the specified SellMessage message. Does not implicitly {@link MarketProtocol.SellMessage.verify|verify} messages.
+         * Encodes the specified ProtocolMessage message. Does not implicitly {@link Protocol.ProtocolMessage.verify|verify} messages.
          * @function encode
-         * @memberof MarketProtocol.SellMessage
+         * @memberof Protocol.ProtocolMessage
          * @static
-         * @param {MarketProtocol.ISellMessage} message SellMessage message or plain object to encode
+         * @param {Protocol.IProtocolMessage} message ProtocolMessage message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SellMessage.encode = function encode(message, writer) {
+        ProtocolMessage.encode = function encode(message, writer) {
             if (!writer)
                 writer = $Writer.create();
             if (message.name != null && Object.hasOwnProperty.call(message, "name"))
                 writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+            if (message.data != null && Object.hasOwnProperty.call(message, "data"))
+                writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.data);
             return writer;
         };
 
         /**
-         * Encodes the specified SellMessage message, length delimited. Does not implicitly {@link MarketProtocol.SellMessage.verify|verify} messages.
+         * Encodes the specified ProtocolMessage message, length delimited. Does not implicitly {@link Protocol.ProtocolMessage.verify|verify} messages.
          * @function encodeDelimited
-         * @memberof MarketProtocol.SellMessage
+         * @memberof Protocol.ProtocolMessage
          * @static
-         * @param {MarketProtocol.ISellMessage} message SellMessage message or plain object to encode
+         * @param {Protocol.IProtocolMessage} message ProtocolMessage message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
          */
-        SellMessage.encodeDelimited = function encodeDelimited(message, writer) {
+        ProtocolMessage.encodeDelimited = function encodeDelimited(message, writer) {
             return this.encode(message, writer).ldelim();
         };
 
         /**
-         * Decodes a SellMessage message from the specified reader or buffer.
+         * Decodes a ProtocolMessage message from the specified reader or buffer.
          * @function decode
-         * @memberof MarketProtocol.SellMessage
+         * @memberof Protocol.ProtocolMessage
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
-         * @returns {MarketProtocol.SellMessage} SellMessage
+         * @returns {Protocol.ProtocolMessage} ProtocolMessage
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SellMessage.decode = function decode(reader, length) {
+        ProtocolMessage.decode = function decode(reader, length) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.MarketProtocol.SellMessage();
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Protocol.ProtocolMessage();
             while (reader.pos < end) {
                 var tag = reader.uint32();
                 switch (tag >>> 3) {
                 case 1: {
                         message.name = reader.string();
+                        break;
+                    }
+                case 2: {
+                        message.data = reader.bytes();
                         break;
                     }
                 default:
@@ -338,523 +603,123 @@ $root.MarketProtocol = (function() {
         };
 
         /**
-         * Decodes a SellMessage message from the specified reader or buffer, length delimited.
+         * Decodes a ProtocolMessage message from the specified reader or buffer, length delimited.
          * @function decodeDelimited
-         * @memberof MarketProtocol.SellMessage
+         * @memberof Protocol.ProtocolMessage
          * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {MarketProtocol.SellMessage} SellMessage
+         * @returns {Protocol.ProtocolMessage} ProtocolMessage
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        SellMessage.decodeDelimited = function decodeDelimited(reader) {
+        ProtocolMessage.decodeDelimited = function decodeDelimited(reader) {
             if (!(reader instanceof $Reader))
                 reader = new $Reader(reader);
             return this.decode(reader, reader.uint32());
         };
 
         /**
-         * Verifies a SellMessage message.
+         * Verifies a ProtocolMessage message.
          * @function verify
-         * @memberof MarketProtocol.SellMessage
+         * @memberof Protocol.ProtocolMessage
          * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
-        SellMessage.verify = function verify(message) {
+        ProtocolMessage.verify = function verify(message) {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.name != null && message.hasOwnProperty("name"))
                 if (!$util.isString(message.name))
                     return "name: string expected";
+            if (message.data != null && message.hasOwnProperty("data"))
+                if (!(message.data && typeof message.data.length === "number" || $util.isString(message.data)))
+                    return "data: buffer expected";
             return null;
         };
 
         /**
-         * Creates a SellMessage message from a plain object. Also converts values to their respective internal types.
+         * Creates a ProtocolMessage message from a plain object. Also converts values to their respective internal types.
          * @function fromObject
-         * @memberof MarketProtocol.SellMessage
+         * @memberof Protocol.ProtocolMessage
          * @static
          * @param {Object.<string,*>} object Plain object
-         * @returns {MarketProtocol.SellMessage} SellMessage
+         * @returns {Protocol.ProtocolMessage} ProtocolMessage
          */
-        SellMessage.fromObject = function fromObject(object) {
-            if (object instanceof $root.MarketProtocol.SellMessage)
+        ProtocolMessage.fromObject = function fromObject(object) {
+            if (object instanceof $root.Protocol.ProtocolMessage)
                 return object;
-            var message = new $root.MarketProtocol.SellMessage();
+            var message = new $root.Protocol.ProtocolMessage();
             if (object.name != null)
                 message.name = String(object.name);
+            if (object.data != null)
+                if (typeof object.data === "string")
+                    $util.base64.decode(object.data, message.data = $util.newBuffer($util.base64.length(object.data)), 0);
+                else if (object.data.length >= 0)
+                    message.data = object.data;
             return message;
         };
 
         /**
-         * Creates a plain object from a SellMessage message. Also converts values to other types if specified.
+         * Creates a plain object from a ProtocolMessage message. Also converts values to other types if specified.
          * @function toObject
-         * @memberof MarketProtocol.SellMessage
+         * @memberof Protocol.ProtocolMessage
          * @static
-         * @param {MarketProtocol.SellMessage} message SellMessage
+         * @param {Protocol.ProtocolMessage} message ProtocolMessage
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
          */
-        SellMessage.toObject = function toObject(message, options) {
+        ProtocolMessage.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
             var object = {};
-            if (options.defaults)
+            if (options.defaults) {
                 object.name = "";
-            if (message.name != null && message.hasOwnProperty("name"))
-                object.name = message.name;
-            return object;
-        };
-
-        /**
-         * Converts this SellMessage to JSON.
-         * @function toJSON
-         * @memberof MarketProtocol.SellMessage
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        SellMessage.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        /**
-         * Gets the default type url for SellMessage
-         * @function getTypeUrl
-         * @memberof MarketProtocol.SellMessage
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-        SellMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/MarketProtocol.SellMessage";
-        };
-
-        return SellMessage;
-    })();
-
-    MarketProtocol.BuyMessage = (function() {
-
-        /**
-         * Properties of a BuyMessage.
-         * @memberof MarketProtocol
-         * @interface IBuyMessage
-         * @property {string|null} [name] BuyMessage name
-         */
-
-        /**
-         * Constructs a new BuyMessage.
-         * @memberof MarketProtocol
-         * @classdesc Represents a BuyMessage.
-         * @implements IBuyMessage
-         * @constructor
-         * @param {MarketProtocol.IBuyMessage=} [properties] Properties to set
-         */
-        function BuyMessage(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * BuyMessage name.
-         * @member {string} name
-         * @memberof MarketProtocol.BuyMessage
-         * @instance
-         */
-        BuyMessage.prototype.name = "";
-
-        /**
-         * Creates a new BuyMessage instance using the specified properties.
-         * @function create
-         * @memberof MarketProtocol.BuyMessage
-         * @static
-         * @param {MarketProtocol.IBuyMessage=} [properties] Properties to set
-         * @returns {MarketProtocol.BuyMessage} BuyMessage instance
-         */
-        BuyMessage.create = function create(properties) {
-            return new BuyMessage(properties);
-        };
-
-        /**
-         * Encodes the specified BuyMessage message. Does not implicitly {@link MarketProtocol.BuyMessage.verify|verify} messages.
-         * @function encode
-         * @memberof MarketProtocol.BuyMessage
-         * @static
-         * @param {MarketProtocol.IBuyMessage} message BuyMessage message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        BuyMessage.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
-                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified BuyMessage message, length delimited. Does not implicitly {@link MarketProtocol.BuyMessage.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof MarketProtocol.BuyMessage
-         * @static
-         * @param {MarketProtocol.IBuyMessage} message BuyMessage message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        BuyMessage.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a BuyMessage message from the specified reader or buffer.
-         * @function decode
-         * @memberof MarketProtocol.BuyMessage
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {MarketProtocol.BuyMessage} BuyMessage
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        BuyMessage.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.MarketProtocol.BuyMessage();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1: {
-                        message.name = reader.string();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
-                    break;
+                if (options.bytes === String)
+                    object.data = "";
+                else {
+                    object.data = [];
+                    if (options.bytes !== Array)
+                        object.data = $util.newBuffer(object.data);
                 }
             }
-            return message;
-        };
-
-        /**
-         * Decodes a BuyMessage message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof MarketProtocol.BuyMessage
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {MarketProtocol.BuyMessage} BuyMessage
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        BuyMessage.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a BuyMessage message.
-         * @function verify
-         * @memberof MarketProtocol.BuyMessage
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        BuyMessage.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.name != null && message.hasOwnProperty("name"))
-                if (!$util.isString(message.name))
-                    return "name: string expected";
-            return null;
-        };
-
-        /**
-         * Creates a BuyMessage message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof MarketProtocol.BuyMessage
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {MarketProtocol.BuyMessage} BuyMessage
-         */
-        BuyMessage.fromObject = function fromObject(object) {
-            if (object instanceof $root.MarketProtocol.BuyMessage)
-                return object;
-            var message = new $root.MarketProtocol.BuyMessage();
-            if (object.name != null)
-                message.name = String(object.name);
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a BuyMessage message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof MarketProtocol.BuyMessage
-         * @static
-         * @param {MarketProtocol.BuyMessage} message BuyMessage
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        BuyMessage.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults)
-                object.name = "";
             if (message.name != null && message.hasOwnProperty("name"))
                 object.name = message.name;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = options.bytes === String ? $util.base64.encode(message.data, 0, message.data.length) : options.bytes === Array ? Array.prototype.slice.call(message.data) : message.data;
             return object;
         };
 
         /**
-         * Converts this BuyMessage to JSON.
+         * Converts this ProtocolMessage to JSON.
          * @function toJSON
-         * @memberof MarketProtocol.BuyMessage
+         * @memberof Protocol.ProtocolMessage
          * @instance
          * @returns {Object.<string,*>} JSON object
          */
-        BuyMessage.prototype.toJSON = function toJSON() {
+        ProtocolMessage.prototype.toJSON = function toJSON() {
             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
         };
 
         /**
-         * Gets the default type url for BuyMessage
+         * Gets the default type url for ProtocolMessage
          * @function getTypeUrl
-         * @memberof MarketProtocol.BuyMessage
+         * @memberof Protocol.ProtocolMessage
          * @static
          * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns {string} The default type url
          */
-        BuyMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        ProtocolMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
             if (typeUrlPrefix === undefined) {
                 typeUrlPrefix = "type.googleapis.com";
             }
-            return typeUrlPrefix + "/MarketProtocol.BuyMessage";
+            return typeUrlPrefix + "/Protocol.ProtocolMessage";
         };
 
-        return BuyMessage;
+        return ProtocolMessage;
     })();
 
-    return MarketProtocol;
-})();
-
-$root.WorldProtocol = (function() {
-
-    /**
-     * Namespace WorldProtocol.
-     * @exports WorldProtocol
-     * @namespace
-     */
-    var WorldProtocol = {};
-
-    WorldProtocol.HelloWorldMessage = (function() {
-
-        /**
-         * Properties of a HelloWorldMessage.
-         * @memberof WorldProtocol
-         * @interface IHelloWorldMessage
-         * @property {string|null} [name] HelloWorldMessage name
-         */
-
-        /**
-         * Constructs a new HelloWorldMessage.
-         * @memberof WorldProtocol
-         * @classdesc Represents a HelloWorldMessage.
-         * @implements IHelloWorldMessage
-         * @constructor
-         * @param {WorldProtocol.IHelloWorldMessage=} [properties] Properties to set
-         */
-        function HelloWorldMessage(properties) {
-            if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                    if (properties[keys[i]] != null)
-                        this[keys[i]] = properties[keys[i]];
-        }
-
-        /**
-         * HelloWorldMessage name.
-         * @member {string} name
-         * @memberof WorldProtocol.HelloWorldMessage
-         * @instance
-         */
-        HelloWorldMessage.prototype.name = "";
-
-        /**
-         * Creates a new HelloWorldMessage instance using the specified properties.
-         * @function create
-         * @memberof WorldProtocol.HelloWorldMessage
-         * @static
-         * @param {WorldProtocol.IHelloWorldMessage=} [properties] Properties to set
-         * @returns {WorldProtocol.HelloWorldMessage} HelloWorldMessage instance
-         */
-        HelloWorldMessage.create = function create(properties) {
-            return new HelloWorldMessage(properties);
-        };
-
-        /**
-         * Encodes the specified HelloWorldMessage message. Does not implicitly {@link WorldProtocol.HelloWorldMessage.verify|verify} messages.
-         * @function encode
-         * @memberof WorldProtocol.HelloWorldMessage
-         * @static
-         * @param {WorldProtocol.IHelloWorldMessage} message HelloWorldMessage message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        HelloWorldMessage.encode = function encode(message, writer) {
-            if (!writer)
-                writer = $Writer.create();
-            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
-                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
-            return writer;
-        };
-
-        /**
-         * Encodes the specified HelloWorldMessage message, length delimited. Does not implicitly {@link WorldProtocol.HelloWorldMessage.verify|verify} messages.
-         * @function encodeDelimited
-         * @memberof WorldProtocol.HelloWorldMessage
-         * @static
-         * @param {WorldProtocol.IHelloWorldMessage} message HelloWorldMessage message or plain object to encode
-         * @param {$protobuf.Writer} [writer] Writer to encode to
-         * @returns {$protobuf.Writer} Writer
-         */
-        HelloWorldMessage.encodeDelimited = function encodeDelimited(message, writer) {
-            return this.encode(message, writer).ldelim();
-        };
-
-        /**
-         * Decodes a HelloWorldMessage message from the specified reader or buffer.
-         * @function decode
-         * @memberof WorldProtocol.HelloWorldMessage
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @param {number} [length] Message length if known beforehand
-         * @returns {WorldProtocol.HelloWorldMessage} HelloWorldMessage
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        HelloWorldMessage.decode = function decode(reader, length) {
-            if (!(reader instanceof $Reader))
-                reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.WorldProtocol.HelloWorldMessage();
-            while (reader.pos < end) {
-                var tag = reader.uint32();
-                switch (tag >>> 3) {
-                case 1: {
-                        message.name = reader.string();
-                        break;
-                    }
-                default:
-                    reader.skipType(tag & 7);
-                    break;
-                }
-            }
-            return message;
-        };
-
-        /**
-         * Decodes a HelloWorldMessage message from the specified reader or buffer, length delimited.
-         * @function decodeDelimited
-         * @memberof WorldProtocol.HelloWorldMessage
-         * @static
-         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-         * @returns {WorldProtocol.HelloWorldMessage} HelloWorldMessage
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        HelloWorldMessage.decodeDelimited = function decodeDelimited(reader) {
-            if (!(reader instanceof $Reader))
-                reader = new $Reader(reader);
-            return this.decode(reader, reader.uint32());
-        };
-
-        /**
-         * Verifies a HelloWorldMessage message.
-         * @function verify
-         * @memberof WorldProtocol.HelloWorldMessage
-         * @static
-         * @param {Object.<string,*>} message Plain object to verify
-         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-         */
-        HelloWorldMessage.verify = function verify(message) {
-            if (typeof message !== "object" || message === null)
-                return "object expected";
-            if (message.name != null && message.hasOwnProperty("name"))
-                if (!$util.isString(message.name))
-                    return "name: string expected";
-            return null;
-        };
-
-        /**
-         * Creates a HelloWorldMessage message from a plain object. Also converts values to their respective internal types.
-         * @function fromObject
-         * @memberof WorldProtocol.HelloWorldMessage
-         * @static
-         * @param {Object.<string,*>} object Plain object
-         * @returns {WorldProtocol.HelloWorldMessage} HelloWorldMessage
-         */
-        HelloWorldMessage.fromObject = function fromObject(object) {
-            if (object instanceof $root.WorldProtocol.HelloWorldMessage)
-                return object;
-            var message = new $root.WorldProtocol.HelloWorldMessage();
-            if (object.name != null)
-                message.name = String(object.name);
-            return message;
-        };
-
-        /**
-         * Creates a plain object from a HelloWorldMessage message. Also converts values to other types if specified.
-         * @function toObject
-         * @memberof WorldProtocol.HelloWorldMessage
-         * @static
-         * @param {WorldProtocol.HelloWorldMessage} message HelloWorldMessage
-         * @param {$protobuf.IConversionOptions} [options] Conversion options
-         * @returns {Object.<string,*>} Plain object
-         */
-        HelloWorldMessage.toObject = function toObject(message, options) {
-            if (!options)
-                options = {};
-            var object = {};
-            if (options.defaults)
-                object.name = "";
-            if (message.name != null && message.hasOwnProperty("name"))
-                object.name = message.name;
-            return object;
-        };
-
-        /**
-         * Converts this HelloWorldMessage to JSON.
-         * @function toJSON
-         * @memberof WorldProtocol.HelloWorldMessage
-         * @instance
-         * @returns {Object.<string,*>} JSON object
-         */
-        HelloWorldMessage.prototype.toJSON = function toJSON() {
-            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-        };
-
-        /**
-         * Gets the default type url for HelloWorldMessage
-         * @function getTypeUrl
-         * @memberof WorldProtocol.HelloWorldMessage
-         * @static
-         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns {string} The default type url
-         */
-        HelloWorldMessage.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
-            if (typeUrlPrefix === undefined) {
-                typeUrlPrefix = "type.googleapis.com";
-            }
-            return typeUrlPrefix + "/WorldProtocol.HelloWorldMessage";
-        };
-
-        return HelloWorldMessage;
-    })();
-
-    return WorldProtocol;
+    return Protocol;
 })();
 
 module.exports = $root;

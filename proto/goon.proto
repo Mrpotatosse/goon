@@ -1,0 +1,13 @@
+// goon.proto
+package GoonProtocol;
+syntax = "proto3";
+
+message ChatMessage {
+    string from = 1;
+    string content = 2;
+    string timestamp = 3;
+}
+
+message HelloMessage {
+    string name = 1;
+}

@@ -1,6 +1,8 @@
 import boxen from "boxen";
 import { program } from "commander";
+import { Handler } from "~/src/handler";
 import { PeerApp } from "~/src/peer";
+import { GoonProtocol, Protocol } from "~/src/protocol";
 
 program
 	.requiredOption("--port <port>", "listening port")
@@ -13,6 +15,10 @@ program
 			topics: options.topics,
 			peers: options.peers,
 			passphrase: options.passphrase,
+		});
+		
+		const handler = new Handler({
+			topics: options.topics,
 		});
 
 		app.addListener("start", (e) => {
@@ -35,17 +41,28 @@ program
 		await app.start();
 
 		app.node.services.pubsub.addEventListener("message", (e) => {
-			console.log("data:", e.detail.topic, e.detail.data.toString());
+			handler.handle(e.detail);
 		});
 
 		app.node.services.pubsub.addEventListener(
 			"subscription-change",
 			async (e) => {
 				await app.node.services.pubsub.publish(
-					"chat",
-					Buffer.from(`hi peer ${e.detail.peerId} from ${app.node.peerId}`),
+					"market",
+					Protocol.ProtocolMessage.encode({
+						name: "ChatMessage",
+						data: GoonProtocol.ChatMessage.encode({
+							from: "me",
+							content: "hello world",
+							timestamp: "now",
+						}).finish(),
+					}).finish(),
 				);
 			},
 		);
+
+		handler.addListener("ChatMessage", (e) => {
+			console.log(e.detail.message.from, e.detail.message.content);
+		});
 	})
 	.parse();

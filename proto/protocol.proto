@@ -1,0 +1,8 @@
+// protocol.proto
+package Protocol;
+syntax = "proto3";
+
+message ProtocolMessage {
+    string name = 1;
+    bytes data = 2;
+}

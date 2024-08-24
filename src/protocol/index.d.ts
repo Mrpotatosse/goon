@@ -1,13 +1,19 @@
 import * as $protobuf from "protobufjs";
 import Long = require("long");
-/** Namespace ChatProtocol. */
-export namespace ChatProtocol {
+/** Namespace GoonProtocol. */
+export namespace GoonProtocol {
 
     /** Properties of a ChatMessage. */
     interface IChatMessage {
 
-        /** ChatMessage name */
-        name?: (string|null);
+        /** ChatMessage from */
+        from?: (string|null);
+
+        /** ChatMessage content */
+        content?: (string|null);
+
+        /** ChatMessage timestamp */
+        timestamp?: (string|null);
     }
 
     /** Represents a ChatMessage. */
@@ -17,33 +23,39 @@ export namespace ChatProtocol {
          * Constructs a new ChatMessage.
          * @param [properties] Properties to set
          */
-        constructor(properties?: ChatProtocol.IChatMessage);
+        constructor(properties?: GoonProtocol.IChatMessage);
 
-        /** ChatMessage name. */
-        public name: string;
+        /** ChatMessage from. */
+        public from: string;
+
+        /** ChatMessage content. */
+        public content: string;
+
+        /** ChatMessage timestamp. */
+        public timestamp: string;
 
         /**
          * Creates a new ChatMessage instance using the specified properties.
          * @param [properties] Properties to set
          * @returns ChatMessage instance
          */
-        public static create(properties?: ChatProtocol.IChatMessage): ChatProtocol.ChatMessage;
+        public static create(properties?: GoonProtocol.IChatMessage): GoonProtocol.ChatMessage;
 
         /**
-         * Encodes the specified ChatMessage message. Does not implicitly {@link ChatProtocol.ChatMessage.verify|verify} messages.
+         * Encodes the specified ChatMessage message. Does not implicitly {@link GoonProtocol.ChatMessage.verify|verify} messages.
          * @param message ChatMessage message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: ChatProtocol.IChatMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: GoonProtocol.IChatMessage, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified ChatMessage message, length delimited. Does not implicitly {@link ChatProtocol.ChatMessage.verify|verify} messages.
+         * Encodes the specified ChatMessage message, length delimited. Does not implicitly {@link GoonProtocol.ChatMessage.verify|verify} messages.
          * @param message ChatMessage message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: ChatProtocol.IChatMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: GoonProtocol.IChatMessage, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
          * Decodes a ChatMessage message from the specified reader or buffer.
@@ -53,7 +65,7 @@ export namespace ChatProtocol {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ChatProtocol.ChatMessage;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): GoonProtocol.ChatMessage;
 
         /**
          * Decodes a ChatMessage message from the specified reader or buffer, length delimited.
@@ -62,7 +74,7 @@ export namespace ChatProtocol {
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ChatProtocol.ChatMessage;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): GoonProtocol.ChatMessage;
 
         /**
          * Verifies a ChatMessage message.
@@ -76,7 +88,7 @@ export namespace ChatProtocol {
          * @param object Plain object
          * @returns ChatMessage
          */
-        public static fromObject(object: { [k: string]: any }): ChatProtocol.ChatMessage;
+        public static fromObject(object: { [k: string]: any }): GoonProtocol.ChatMessage;
 
         /**
          * Creates a plain object from a ChatMessage message. Also converts values to other types if specified.
@@ -84,7 +96,7 @@ export namespace ChatProtocol {
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: ChatProtocol.ChatMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: GoonProtocol.ChatMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
          * Converts this ChatMessage to JSON.
@@ -99,199 +111,98 @@ export namespace ChatProtocol {
          */
         public static getTypeUrl(typeUrlPrefix?: string): string;
     }
-}
 
-/** Namespace MarketProtocol. */
-export namespace MarketProtocol {
+    /** Properties of a HelloMessage. */
+    interface IHelloMessage {
 
-    /** Properties of a SellMessage. */
-    interface ISellMessage {
-
-        /** SellMessage name */
+        /** HelloMessage name */
         name?: (string|null);
     }
 
-    /** Represents a SellMessage. */
-    class SellMessage implements ISellMessage {
+    /** Represents a HelloMessage. */
+    class HelloMessage implements IHelloMessage {
 
         /**
-         * Constructs a new SellMessage.
+         * Constructs a new HelloMessage.
          * @param [properties] Properties to set
          */
-        constructor(properties?: MarketProtocol.ISellMessage);
+        constructor(properties?: GoonProtocol.IHelloMessage);
 
-        /** SellMessage name. */
+        /** HelloMessage name. */
         public name: string;
 
         /**
-         * Creates a new SellMessage instance using the specified properties.
+         * Creates a new HelloMessage instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns SellMessage instance
+         * @returns HelloMessage instance
          */
-        public static create(properties?: MarketProtocol.ISellMessage): MarketProtocol.SellMessage;
+        public static create(properties?: GoonProtocol.IHelloMessage): GoonProtocol.HelloMessage;
 
         /**
-         * Encodes the specified SellMessage message. Does not implicitly {@link MarketProtocol.SellMessage.verify|verify} messages.
-         * @param message SellMessage message or plain object to encode
+         * Encodes the specified HelloMessage message. Does not implicitly {@link GoonProtocol.HelloMessage.verify|verify} messages.
+         * @param message HelloMessage message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: MarketProtocol.ISellMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: GoonProtocol.IHelloMessage, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified SellMessage message, length delimited. Does not implicitly {@link MarketProtocol.SellMessage.verify|verify} messages.
-         * @param message SellMessage message or plain object to encode
+         * Encodes the specified HelloMessage message, length delimited. Does not implicitly {@link GoonProtocol.HelloMessage.verify|verify} messages.
+         * @param message HelloMessage message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: MarketProtocol.ISellMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: GoonProtocol.IHelloMessage, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a SellMessage message from the specified reader or buffer.
+         * Decodes a HelloMessage message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns SellMessage
+         * @returns HelloMessage
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): MarketProtocol.SellMessage;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): GoonProtocol.HelloMessage;
 
         /**
-         * Decodes a SellMessage message from the specified reader or buffer, length delimited.
+         * Decodes a HelloMessage message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns SellMessage
+         * @returns HelloMessage
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): MarketProtocol.SellMessage;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): GoonProtocol.HelloMessage;
 
         /**
-         * Verifies a SellMessage message.
+         * Verifies a HelloMessage message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a SellMessage message from a plain object. Also converts values to their respective internal types.
+         * Creates a HelloMessage message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns SellMessage
+         * @returns HelloMessage
          */
-        public static fromObject(object: { [k: string]: any }): MarketProtocol.SellMessage;
+        public static fromObject(object: { [k: string]: any }): GoonProtocol.HelloMessage;
 
         /**
-         * Creates a plain object from a SellMessage message. Also converts values to other types if specified.
-         * @param message SellMessage
+         * Creates a plain object from a HelloMessage message. Also converts values to other types if specified.
+         * @param message HelloMessage
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: MarketProtocol.SellMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: GoonProtocol.HelloMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this SellMessage to JSON.
+         * Converts this HelloMessage to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the default type url for SellMessage
-         * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
-         * @returns The default type url
-         */
-        public static getTypeUrl(typeUrlPrefix?: string): string;
-    }
-
-    /** Properties of a BuyMessage. */
-    interface IBuyMessage {
-
-        /** BuyMessage name */
-        name?: (string|null);
-    }
-
-    /** Represents a BuyMessage. */
-    class BuyMessage implements IBuyMessage {
-
-        /**
-         * Constructs a new BuyMessage.
-         * @param [properties] Properties to set
-         */
-        constructor(properties?: MarketProtocol.IBuyMessage);
-
-        /** BuyMessage name. */
-        public name: string;
-
-        /**
-         * Creates a new BuyMessage instance using the specified properties.
-         * @param [properties] Properties to set
-         * @returns BuyMessage instance
-         */
-        public static create(properties?: MarketProtocol.IBuyMessage): MarketProtocol.BuyMessage;
-
-        /**
-         * Encodes the specified BuyMessage message. Does not implicitly {@link MarketProtocol.BuyMessage.verify|verify} messages.
-         * @param message BuyMessage message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encode(message: MarketProtocol.IBuyMessage, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Encodes the specified BuyMessage message, length delimited. Does not implicitly {@link MarketProtocol.BuyMessage.verify|verify} messages.
-         * @param message BuyMessage message or plain object to encode
-         * @param [writer] Writer to encode to
-         * @returns Writer
-         */
-        public static encodeDelimited(message: MarketProtocol.IBuyMessage, writer?: $protobuf.Writer): $protobuf.Writer;
-
-        /**
-         * Decodes a BuyMessage message from the specified reader or buffer.
-         * @param reader Reader or buffer to decode from
-         * @param [length] Message length if known beforehand
-         * @returns BuyMessage
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): MarketProtocol.BuyMessage;
-
-        /**
-         * Decodes a BuyMessage message from the specified reader or buffer, length delimited.
-         * @param reader Reader or buffer to decode from
-         * @returns BuyMessage
-         * @throws {Error} If the payload is not a reader or valid buffer
-         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-         */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): MarketProtocol.BuyMessage;
-
-        /**
-         * Verifies a BuyMessage message.
-         * @param message Plain object to verify
-         * @returns `null` if valid, otherwise the reason why it is not
-         */
-        public static verify(message: { [k: string]: any }): (string|null);
-
-        /**
-         * Creates a BuyMessage message from a plain object. Also converts values to their respective internal types.
-         * @param object Plain object
-         * @returns BuyMessage
-         */
-        public static fromObject(object: { [k: string]: any }): MarketProtocol.BuyMessage;
-
-        /**
-         * Creates a plain object from a BuyMessage message. Also converts values to other types if specified.
-         * @param message BuyMessage
-         * @param [options] Conversion options
-         * @returns Plain object
-         */
-        public static toObject(message: MarketProtocol.BuyMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-        /**
-         * Converts this BuyMessage to JSON.
-         * @returns JSON object
-         */
-        public toJSON(): { [k: string]: any };
-
-        /**
-         * Gets the default type url for BuyMessage
+         * Gets the default type url for HelloMessage
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */
@@ -299,100 +210,106 @@ export namespace MarketProtocol {
     }
 }
 
-/** Namespace WorldProtocol. */
-export namespace WorldProtocol {
+/** Namespace Protocol. */
+export namespace Protocol {
 
-    /** Properties of a HelloWorldMessage. */
-    interface IHelloWorldMessage {
+    /** Properties of a ProtocolMessage. */
+    interface IProtocolMessage {
 
-        /** HelloWorldMessage name */
+        /** ProtocolMessage name */
         name?: (string|null);
+
+        /** ProtocolMessage data */
+        data?: (Uint8Array|null);
     }
 
-    /** Represents a HelloWorldMessage. */
-    class HelloWorldMessage implements IHelloWorldMessage {
+    /** Represents a ProtocolMessage. */
+    class ProtocolMessage implements IProtocolMessage {
 
         /**
-         * Constructs a new HelloWorldMessage.
+         * Constructs a new ProtocolMessage.
          * @param [properties] Properties to set
          */
-        constructor(properties?: WorldProtocol.IHelloWorldMessage);
+        constructor(properties?: Protocol.IProtocolMessage);
 
-        /** HelloWorldMessage name. */
+        /** ProtocolMessage name. */
         public name: string;
 
+        /** ProtocolMessage data. */
+        public data: Uint8Array;
+
         /**
-         * Creates a new HelloWorldMessage instance using the specified properties.
+         * Creates a new ProtocolMessage instance using the specified properties.
          * @param [properties] Properties to set
-         * @returns HelloWorldMessage instance
+         * @returns ProtocolMessage instance
          */
-        public static create(properties?: WorldProtocol.IHelloWorldMessage): WorldProtocol.HelloWorldMessage;
+        public static create(properties?: Protocol.IProtocolMessage): Protocol.ProtocolMessage;
 
         /**
-         * Encodes the specified HelloWorldMessage message. Does not implicitly {@link WorldProtocol.HelloWorldMessage.verify|verify} messages.
-         * @param message HelloWorldMessage message or plain object to encode
+         * Encodes the specified ProtocolMessage message. Does not implicitly {@link Protocol.ProtocolMessage.verify|verify} messages.
+         * @param message ProtocolMessage message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encode(message: WorldProtocol.IHelloWorldMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encode(message: Protocol.IProtocolMessage, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Encodes the specified HelloWorldMessage message, length delimited. Does not implicitly {@link WorldProtocol.HelloWorldMessage.verify|verify} messages.
-         * @param message HelloWorldMessage message or plain object to encode
+         * Encodes the specified ProtocolMessage message, length delimited. Does not implicitly {@link Protocol.ProtocolMessage.verify|verify} messages.
+         * @param message ProtocolMessage message or plain object to encode
          * @param [writer] Writer to encode to
          * @returns Writer
          */
-        public static encodeDelimited(message: WorldProtocol.IHelloWorldMessage, writer?: $protobuf.Writer): $protobuf.Writer;
+        public static encodeDelimited(message: Protocol.IProtocolMessage, writer?: $protobuf.Writer): $protobuf.Writer;
 
         /**
-         * Decodes a HelloWorldMessage message from the specified reader or buffer.
+         * Decodes a ProtocolMessage message from the specified reader or buffer.
          * @param reader Reader or buffer to decode from
          * @param [length] Message length if known beforehand
-         * @returns HelloWorldMessage
+         * @returns ProtocolMessage
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): WorldProtocol.HelloWorldMessage;
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Protocol.ProtocolMessage;
 
         /**
-         * Decodes a HelloWorldMessage message from the specified reader or buffer, length delimited.
+         * Decodes a ProtocolMessage message from the specified reader or buffer, length delimited.
          * @param reader Reader or buffer to decode from
-         * @returns HelloWorldMessage
+         * @returns ProtocolMessage
          * @throws {Error} If the payload is not a reader or valid buffer
          * @throws {$protobuf.util.ProtocolError} If required fields are missing
          */
-        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): WorldProtocol.HelloWorldMessage;
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Protocol.ProtocolMessage;
 
         /**
-         * Verifies a HelloWorldMessage message.
+         * Verifies a ProtocolMessage message.
          * @param message Plain object to verify
          * @returns `null` if valid, otherwise the reason why it is not
          */
         public static verify(message: { [k: string]: any }): (string|null);
 
         /**
-         * Creates a HelloWorldMessage message from a plain object. Also converts values to their respective internal types.
+         * Creates a ProtocolMessage message from a plain object. Also converts values to their respective internal types.
          * @param object Plain object
-         * @returns HelloWorldMessage
+         * @returns ProtocolMessage
          */
-        public static fromObject(object: { [k: string]: any }): WorldProtocol.HelloWorldMessage;
+        public static fromObject(object: { [k: string]: any }): Protocol.ProtocolMessage;
 
         /**
-         * Creates a plain object from a HelloWorldMessage message. Also converts values to other types if specified.
-         * @param message HelloWorldMessage
+         * Creates a plain object from a ProtocolMessage message. Also converts values to other types if specified.
+         * @param message ProtocolMessage
          * @param [options] Conversion options
          * @returns Plain object
          */
-        public static toObject(message: WorldProtocol.HelloWorldMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
+        public static toObject(message: Protocol.ProtocolMessage, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
         /**
-         * Converts this HelloWorldMessage to JSON.
+         * Converts this ProtocolMessage to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
 
         /**
-         * Gets the default type url for HelloWorldMessage
+         * Gets the default type url for ProtocolMessage
          * @param [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
          * @returns The default type url
          */

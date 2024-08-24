@@ -34,7 +34,7 @@
 		"build:out": "bun builder.ts",
 		"build:protocol": "pbjs -t static-module -w commonjs -o src/protocol/index.js proto/*.proto && pbts -o src/protocol/index.d.ts src/protocol/index.js",
 		"db:migrate": "bunx drizzle-kit generate --dialect sqlite --schema ./src/database/schema.ts && bun --env-file=.env ./src/database/migrate.ts",
-		"dev": "bun build:out && node --env-file=.env out --port=4567 --topics=chat --topics=zob --peers=/ip4/85.215.227.222/tcp/4567/p2p/12D3KooWMY38GXV5VEG8aPTzboNfRvwHeavpcmkWfDYorG9FnbUv --passphrase='this is my key'",
-		"start": "node --env-file=.env out"
+		"dev": "bun build:out && node --env-file=.env out --port=4567 --topics=chat --topics=market --passphrase='this is my key'",
+		"start": "node --env-file=.env out --port=4568 --topics=chat --topics=market --passphrase='this is my key number 2' --peers=/ip4/172.26.166.237/tcp/4567/p2p/12D3KooWAxRBPeZCsLDq8wSV7Rtn34iJT3YZaAzWfwiJCASuiFX2"
 	}
 }
