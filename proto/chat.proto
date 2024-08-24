@@ -1,0 +1,7 @@
+// chat.proto
+package ChatProtocol;
+syntax = "proto3";
+
+message ChatMessage {
+    string name = 1;
+}

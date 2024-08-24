@@ -1,0 +1,11 @@
+// market.proto
+package MarketProtocol;
+syntax = "proto3";
+
+message SellMessage {
+    string name = 1;
+}
+
+message BuyMessage {
+    string name = 1;
+}

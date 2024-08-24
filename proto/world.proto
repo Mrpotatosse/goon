@@ -1,0 +1,7 @@
+// world.proto
+package WorldProtocol;
+syntax = "proto3";
+
+message HelloWorldMessage {
+    string name = 1;
+}
